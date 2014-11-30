@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Metalhead64"
+			"Metalhead64",
+			"Purodha"
 		]
 	},
-	"commonmessages-desc": "Ermöglicht einer Wikifarm, Nachrichten von einem anderen Wiki zu überschreiben"
+	"commonmessages-desc": "Ermöglicht einer Wikifarm, eigene Nachrichten mit solchen aus einem anderen Wiki zu überschreiben"
 }
