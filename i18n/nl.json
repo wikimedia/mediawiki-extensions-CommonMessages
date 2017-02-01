@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Esketti"
+			"Esketti",
+			"QZanden"
 		]
 	},
-	"commonmessages-desc": "Laat een wikifarm overschrijven berichten van andere wiki"
+	"commonmessages-desc": "Staat een wikifarm toe om berichten van een andere wiki te overschrijven"
 }
