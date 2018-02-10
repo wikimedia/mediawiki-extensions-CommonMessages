@@ -29,12 +29,12 @@ class CommonMessages {
 			$file = file_get_contents( __DIR__ . '/export/en.json' );
 			wfRestoreWarnings();
 			if ( !$file ) {
-				$this->keys = array();
+				$this->keys = [];
 				return false;
 			}
 			$json = FormatJson::decode( $file, true );
 			if ( !$json ) {
-				$this->keys = array();
+				$this->keys = [];
 				return false;
 			}
 			$this->keys = array_keys( $json );

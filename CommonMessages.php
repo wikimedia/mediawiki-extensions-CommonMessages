@@ -17,13 +17,13 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	exit();
 }
 
-$wgExtensionCredits['other'][] = array(
+$wgExtensionCredits['other'][] = [
 	'path' => __FILE__,
 	'name' => 'CommonMessages',
 	'author' => 'Kunal Mehta',
 	'descriptionmsg' => 'commonmessages-desc',
 	'version' => '0.0.1',
-);
+];
 
 /**
  * Prefix of messages when exporting.
@@ -38,7 +38,7 @@ $wgCommonMessagesPrefix = '';
  */
 $wgCommonMessagesExportDir = __DIR__ . '/export';
 
-$wgExtensionFunctions[] = function() {
+$wgExtensionFunctions[] = function () {
 	global $wgCommonMessagesExportDir;
 	if ( file_exists( $wgCommonMessagesExportDir . '/en.json' ) ) {
 		// If an export has happened, load it
@@ -46,11 +46,10 @@ $wgExtensionFunctions[] = function() {
 	}
 };
 
-
 $wgMessagesDirs['CommonMessages'] = __DIR__ . '/i18n';
 $wgAutoloadClasses['CommonMessages'] = __DIR__ . '/CommonMessages.body.php';
 
-$wgHooks['MessageCache::get'][] = function( &$key ) {
+$wgHooks['MessageCache::get'][] = function ( &$key ) {
 	$commons = CommonMessages::singleton();
 	if ( $commons->isKeyRegistered( $key ) ) {
 		$key = $commons->transformKey( $key );

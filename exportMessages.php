@@ -6,23 +6,23 @@ if ( $IP === false ) {
 }
 
 // Require base maintenance class
-require_once( "$IP/maintenance/Maintenance.php" );
+require_once "$IP/maintenance/Maintenance.php";
 
 class ExportMessages extends Maintenance {
 
 	public function execute() {
 		global $wgCommonMessagesExportDir;
 		$commons = CommonMessages::singleton();
-		$dbr = wfGetDB( DB_SLAVE );
+		$dbr = wfGetDB( DB_REPLICA );
 		// @todo Can we make this less memory intensive?
 		$rows = $dbr->select(
 			'page',
-			array( 'page_namespace', 'page_title', 'page_id', 'page_latest' ),
-			array( 'page_namespace' => NS_MEDIAWIKI ),
+			[ 'page_namespace', 'page_title', 'page_id', 'page_latest' ],
+			[ 'page_namespace' => NS_MEDIAWIKI ],
 			__METHOD__
 		);
-		$messages = array();
-		foreach( $rows as $row ) {
+		$messages = [];
+		foreach ( $rows as $row ) {
 			$title = Title::newFromRow( $row );
 			$exp = explode( '/', $title->getPrefixedText() );
 			$lang = $exp[1];
@@ -43,4 +43,4 @@ class ExportMessages extends Maintenance {
 }
 
 $maintClass = 'ExportMessages';
-require_once( RUN_MAINTENANCE_IF_MAIN );
+require_once RUN_MAINTENANCE_IF_MAIN;
