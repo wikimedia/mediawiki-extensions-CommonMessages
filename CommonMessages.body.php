@@ -41,9 +41,9 @@ class CommonMessages {
 	public function isKeyRegistered( $key ) {
 		if ( $this->keys === null ) {
 			// Load the JSON file.
-			wfSuppressWarnings();
+			Wikimedia\suppressWarnings();
 			$file = file_get_contents( __DIR__ . '/export/en.json' );
-			wfRestoreWarnings();
+			Wikimedia\restoreWarnings();
 			if ( !$file ) {
 				$this->keys = [];
 				return false;
