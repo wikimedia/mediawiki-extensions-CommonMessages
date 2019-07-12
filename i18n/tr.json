@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"TmY e12"
+			"TmY e12",
+			"ToprakM"
 		]
 	},
 	"commonmessages-desc": "Bir wikifarm'ın başka bir vikiden gelen mesajları geçersiz kılmasına izin ver"
