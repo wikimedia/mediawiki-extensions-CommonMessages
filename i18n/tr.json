@@ -1,9 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"MuratTheTurkish",
 			"TmY e12",
 			"ToprakM"
 		]
 	},
-	"commonmessages-desc": "Bir wikifarm'ın başka bir vikiden gelen mesajları geçersiz kılmasına izin ver"
+	"commonmessages-desc": "Bir viki çiftliğin başka bir vikiden gelen mesajları geçersiz kılmasına izin verir"
 }
