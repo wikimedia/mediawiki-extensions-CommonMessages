@@ -18,7 +18,7 @@
 
 class CommonMessages {
 
-	/** @var array $keys */
+	/** @var array */
 	protected $keys;
 
 	public static function singleton() {
