@@ -50,7 +50,7 @@ $wgCommonMessagesPrefix = '';
  */
 $wgCommonMessagesExportDir = __DIR__ . '/export';
 
-$wgExtensionFunctions[] = function () {
+$wgExtensionFunctions[] = static function () {
 	global $wgCommonMessagesExportDir;
 	if ( file_exists( $wgCommonMessagesExportDir . '/en.json' ) ) {
 		// If an export has happened, load it
@@ -61,7 +61,7 @@ $wgExtensionFunctions[] = function () {
 $wgMessagesDirs['CommonMessages'] = __DIR__ . '/i18n';
 $wgAutoloadClasses['CommonMessages'] = __DIR__ . '/CommonMessages.body.php';
 
-$wgHooks['MessageCache::get'][] = function ( &$key ) {
+$wgHooks['MessageCache::get'][] = static function ( &$key ) {
 	$commons = CommonMessages::singleton();
 	if ( $commons->isKeyRegistered( $key ) ) {
 		$key = $commons->transformKey( $key );
