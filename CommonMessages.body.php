@@ -16,6 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+use Wikimedia\AtEase\AtEase;
+
 class CommonMessages {
 
 	/** @var array */
@@ -41,9 +43,9 @@ class CommonMessages {
 	public function isKeyRegistered( $key ) {
 		if ( $this->keys === null ) {
 			// Load the JSON file.
-			Wikimedia\suppressWarnings();
+			AtEase::suppressWarnings();
 			$file = file_get_contents( __DIR__ . '/export/en.json' );
-			Wikimedia\restoreWarnings();
+			AtEase::restoreWarnings();
 			if ( !$file ) {
 				$this->keys = [];
 				return false;
