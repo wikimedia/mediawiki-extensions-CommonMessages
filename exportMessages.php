@@ -16,6 +16,8 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+use MediaWiki\MediaWikiServices;
+
 $IP = getenv( 'MW_INSTALL_PATH' );
 if ( $IP === false ) {
 	$IP = __DIR__ . '/../..';
@@ -38,11 +40,23 @@ class ExportMessages extends Maintenance {
 			__METHOD__
 		);
 		$messages = [];
+		if ( method_exists( MediaWikiServices::class, 'getLanguageNameUtils' ) ) {
+			// MW 1.34+
+			$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+		} else {
+			$languageNameUtils = null;
+		}
 		foreach ( $rows as $row ) {
 			$title = Title::newFromRow( $row );
 			$exp = explode( '/', $title->getPrefixedText() );
 			$lang = $exp[1];
-			if ( !Language::isValidCode( $lang ) ) {
+			if ( $languageNameUtils ) {
+				// MW 1.34+
+				$valid = $languageNameUtils->isValidCode( $lang );
+			} else {
+				$valid = Language::isValidCode( $lang );
+			}
+			if ( !$valid ) {
 				wfDebugLog( 'MessageCommons', 'Found invalid page: ' . $title->getFullText() );
 				continue;
 			}
