@@ -31,7 +31,7 @@ class ExportMessages extends Maintenance {
 	public function execute() {
 		global $wgCommonMessagesExportDir;
 		$commons = CommonMessages::singleton();
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_REPLICA );
 		// @todo Can we make this less memory intensive?
 		$rows = $dbr->select(
 			'page',
