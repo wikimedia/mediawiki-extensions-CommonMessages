@@ -14,9 +14,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * @file
  */
-
-use Wikimedia\AtEase\AtEase;
 
 class CommonMessages {
 
@@ -43,9 +42,8 @@ class CommonMessages {
 	public function isKeyRegistered( $key ) {
 		if ( $this->keys === null ) {
 			// Load the JSON file.
-			AtEase::suppressWarnings();
-			$file = file_get_contents( __DIR__ . '/export/en.json' );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$file = @file_get_contents( __DIR__ . '/export/en.json' );
 			if ( !$file ) {
 				$this->keys = [];
 				return false;
