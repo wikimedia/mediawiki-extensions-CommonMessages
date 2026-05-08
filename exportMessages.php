@@ -47,6 +47,7 @@ class ExportMessages extends Maintenance {
 		} else {
 			$languageNameUtils = null;
 		}
+		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 		foreach ( $rows as $row ) {
 			$title = Title::newFromRow( $row );
 			$exp = explode( '/', $title->getPrefixedText() );
@@ -62,8 +63,10 @@ class ExportMessages extends Maintenance {
 				continue;
 			}
 			$key = $commons->transformKey( strtolower( $title->getPrefixedText() ) );
-			$messages[$lang][$key]
-				= Revision::newFromTitle( $title )->getContent( Revision::RAW )->getNativeData();
+			$content = $revisionLookup->getRevisionByTitle( $title )->getContent( Revision::RAW );
+			if ( $content instanceof TextContent ) {
+				$messages[$lang][$key] = $content->getText();
+			}
 		}
 		// Now export.
 		foreach ( $messages as $lang => $data ) {
